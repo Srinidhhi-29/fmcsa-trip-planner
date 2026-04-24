@@ -1,0 +1,219 @@
+{
+  "route": {
+    "provider": "generated-demo-route",
+    "distance_miles": 928.4,
+    "duration_hours": 15.47,
+    "path": [
+      [41.8781, -87.6298],
+      [38.627, -90.1994],
+      [32.7767, -96.797]
+    ]
+  },
+  "stops": [
+    {
+      "type": "pickup",
+      "label": "Pickup",
+      "day": 1,
+      "hour": 0,
+      "mile_marker": 0,
+      "coordinates": [41.8781, -87.6298],
+      "remarks": "Pickup event and loading",
+      "reason": "Pickup is logged as on-duty not driving for 1 hour",
+      "rule_code": "ON_DUTY_PICKUP",
+      "required": true,
+      "location": "St. Louis, MO"
+    },
+    {
+      "type": "break",
+      "label": "30-minute break",
+      "day": 1,
+      "hour": 9,
+      "mile_marker": 480,
+      "coordinates": [38.627, -90.1994],
+      "remarks": "Required break after 8 hours of driving per FMCSA 30-minute break rule",
+      "reason": "Required break after 8 hours of driving per FMCSA 30-minute break rule",
+      "rule_code": "HOS_30_MIN_BREAK",
+      "required": true
+    },
+    {
+      "type": "rest",
+      "label": "10-hour rest",
+      "day": 1,
+      "hour": 12.5,
+      "mile_marker": 660,
+      "coordinates": [35.7019, -93.4982],
+      "remarks": "Daily 11-hour driving limit reached",
+      "reason": "Daily 11-hour driving limit reached",
+      "rule_code": "HOS_10_HOUR_REST",
+      "required": true
+    },
+    {
+      "type": "dropoff",
+      "label": "Dropoff",
+      "day": 2,
+      "hour": 4.47,
+      "mile_marker": 928.4,
+      "coordinates": [32.7767, -96.797],
+      "remarks": "Dropoff event and unloading",
+      "reason": "Dropoff is logged as on-duty not driving for 1 hour",
+      "rule_code": "ON_DUTY_DROPOFF",
+      "required": true,
+      "location": "Dallas, TX"
+    }
+  ],
+  "logs": [
+    {
+      "day": 1,
+      "date": "2026-04-24",
+      "segments": [
+        {
+          "status": "ON_DUTY",
+          "label": "On Duty (not driving)",
+          "start": 0,
+          "end": 1,
+          "duration": 1,
+          "remarks": "Pickup paperwork and loading",
+          "rule_code": "ON_DUTY_PICKUP"
+        },
+        {
+          "status": "DRIVING",
+          "label": "Driving",
+          "start": 1,
+          "end": 9,
+          "duration": 8,
+          "remarks": "Driving segment",
+          "rule_code": "DRIVE_SEGMENT_LIMIT"
+        },
+        {
+          "status": "OFF_DUTY",
+          "label": "Off Duty",
+          "start": 9,
+          "end": 9.5,
+          "duration": 0.5,
+          "remarks": "Required 30-minute break after 8 hours driving",
+          "rule_code": "HOS_30_MIN_BREAK"
+        },
+        {
+          "status": "DRIVING",
+          "label": "Driving",
+          "start": 9.5,
+          "end": 12.5,
+          "duration": 3,
+          "remarks": "Driving segment",
+          "rule_code": "DRIVE_SEGMENT_LIMIT"
+        },
+        {
+          "status": "SLEEPER_BERTH",
+          "label": "Sleeper Berth",
+          "start": 12.5,
+          "end": 22.5,
+          "duration": 10,
+          "remarks": "Daily 11-hour driving limit reached",
+          "rule_code": "HOS_10_HOUR_REST"
+        },
+        {
+          "status": "OFF_DUTY",
+          "label": "Off Duty",
+          "start": 22.5,
+          "end": 24,
+          "duration": 1.5,
+          "remarks": "Off duty",
+          "rule_code": "LOG_24_HOUR_FILL"
+        }
+      ],
+      "totals": {
+        "OFF_DUTY": 2,
+        "SLEEPER_BERTH": 10,
+        "DRIVING": 11,
+        "ON_DUTY": 1
+      }
+    },
+    {
+      "day": 2,
+      "date": "2026-04-25",
+      "segments": [
+        {
+          "status": "DRIVING",
+          "label": "Driving",
+          "start": 0,
+          "end": 4.47,
+          "duration": 4.47,
+          "remarks": "Driving segment",
+          "rule_code": "DRIVE_SEGMENT_LIMIT"
+        },
+        {
+          "status": "ON_DUTY",
+          "label": "On Duty (not driving)",
+          "start": 4.47,
+          "end": 5.47,
+          "duration": 1,
+          "remarks": "Dropoff paperwork and unloading",
+          "rule_code": "ON_DUTY_DROPOFF"
+        },
+        {
+          "status": "OFF_DUTY",
+          "label": "Off Duty",
+          "start": 5.47,
+          "end": 24,
+          "duration": 18.53,
+          "remarks": "Off duty",
+          "rule_code": "INFO"
+        }
+      ],
+      "totals": {
+        "OFF_DUTY": 18.53,
+        "SLEEPER_BERTH": 0,
+        "DRIVING": 4.47,
+        "ON_DUTY": 1
+      }
+    }
+  ],
+  "summary": {
+    "distance_miles": 928.4,
+    "estimated_driving_hours": 15.47,
+    "trip_days": 2,
+    "total_stops": 4,
+    "fuel_stops": 0,
+    "breaks": 1,
+    "rests": 1,
+    "ending_cycle_hours": 35.47,
+    "remaining_cycle_hours": 34.53,
+    "compliance_status": "VALID"
+  },
+  "compliance": {
+    "status": "VALID",
+    "is_compliant": true,
+    "starting_cycle_hours": 18,
+    "ending_cycle_hours": 35.47,
+    "remaining_cycle_hours": 34.53,
+    "warnings": [],
+    "violations": [],
+    "checks": [
+      {"name": "Day 1 totals equal 24 hours", "passed": true, "value": 24},
+      {"name": "Day 1 driving is at or below 11 hours", "passed": true, "value": 11},
+      {"name": "Day 1 duty time is at or below 14 hours", "passed": true, "value": 12},
+      {"name": "Day 2 totals equal 24 hours", "passed": true, "value": 24},
+      {"name": "Day 2 driving is at or below 11 hours", "passed": true, "value": 4.47},
+      {"name": "Day 2 duty time is at or below 14 hours", "passed": true, "value": 5.47},
+      {"name": "Ending cycle hours remain at or below 70", "passed": true, "value": 35.47}
+    ]
+  },
+  "decisions": [
+    {
+      "rule_code": "HOS_30_MIN_BREAK",
+      "message": "Driver has reached 8 hours of cumulative driving since last qualifying break.",
+      "consequence": "Driving is blocked until a 30-minute off-duty break is completed.",
+      "day": 1,
+      "hour": 9,
+      "mile_marker": 480
+    },
+    {
+      "rule_code": "HOS_DAILY_OR_WINDOW_LIMIT",
+      "message": "Daily 11-hour driving limit reached",
+      "consequence": "Driving is blocked until a 10-hour rest is completed.",
+      "day": 1,
+      "hour": 12.5,
+      "mile_marker": 660
+    }
+  ]
+}
