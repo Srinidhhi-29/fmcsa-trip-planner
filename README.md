@@ -6,8 +6,8 @@ Production-style full-stack assessment project for planning a truck route and ge
 
 ## 🔗 Live Links
 
-* Frontend: <your-vercel-link>
-* Backend API: <your-render-link>
+* Frontend: <https://fmcsa-trip-planner.vercel.app/>
+* Backend API: <https://fmcsa-trip-planner.onrender.com>
 * Loom Demo: <your-loom-link>
 
 ---
