@@ -9,5 +9,8 @@ export const api = axios.create({
   timeout: 20000,
 });
 
-export const planTrip = (payload) => api.post("/plan-trip", payload).then(r => r.data);
-export const listTrips = () => api.get("/trips").then(r => r.data);
+export const planTrip = (payload) =>
+  api.post("/plan-trip", payload).then(r => r.data);
+
+export const listTrips = () =>
+  api.get("/trips").then(r => r.data);
