@@ -41,20 +41,26 @@ export default function TripForm({ onSubmit, loading }) {
         <h2>Build a compliant route</h2>
       </div>
 
-      <label>
-        Current location
-        <input required name="current_location" value={values.current_location} onChange={updateField} />
-      </label>
+          <input
+        name="current_location"
+        value={values.current_location}
+        onChange={updateField}
+        placeholder="Enter current location"
+      />
 
-      <label>
-        Pickup location
-        <input required name="pickup_location" value={values.pickup_location} onChange={updateField} />
-      </label>
+      <input
+        name="pickup_location"
+        value={values.pickup_location}
+        onChange={updateField}
+        placeholder="Enter pickup location"
+      />
 
-      <label>
-        Dropoff location
-        <input required name="dropoff_location" value={values.dropoff_location} onChange={updateField} />
-      </label>
+      <input
+        name="dropoff_location"
+        value={values.dropoff_location}
+        onChange={updateField}
+        placeholder="Enter dropoff location"
+      />
 
       <label>
         Current cycle used
