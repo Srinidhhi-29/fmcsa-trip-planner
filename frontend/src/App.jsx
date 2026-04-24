@@ -85,7 +85,9 @@ export default function App() {
               <Metric label="Cycle end" value={trip.summary.ending_cycle_hours} />
             </div>
           )}
+          {history.length > 0 && (
           <TripHistory trips={history} />
+          )}
         </aside>
 
         <section className="results-panel">
