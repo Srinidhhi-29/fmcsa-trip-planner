@@ -48,6 +48,7 @@ React UI -> POST /api/plan-trip -> Django REST Framework
 ```
 
 ---
+![alt text](image.png)
 
 ## Folder Structure
 
