@@ -83,11 +83,12 @@ export default function App() {
               <Metric label="Cycle end" value={trip.summary.ending_cycle_hours} />
             </div>
           )}
-          {history.length > 0 && (
-          <TripHistory trips={history} />
-          )}
+          {!trip ? (
+            <p className="empty-state">Plan a trip to see history.</p>
+          ) : (
+            history.length > 0 && <TripHistory trips={history} />
+          )}         
         </aside>
-
         <section className="results-panel">
           <CompliancePanel compliance={trip?.compliance} summary={trip?.summary} />
           <MapView
