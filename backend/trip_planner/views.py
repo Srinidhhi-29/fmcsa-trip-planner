@@ -11,12 +11,12 @@ from .services.map_service import build_route
 class PlanTripView(APIView):
     def post(self, request):
         try:
-            # ✅ Validate request
+            #  Validate request
             serializer = TripPlanRequestSerializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             data = serializer.validated_data
 
-            # ✅ Build route
+            #  Build route
             route = build_route(
                 data["current_location"],
                 data["pickup_location"],
@@ -30,7 +30,7 @@ class PlanTripView(APIView):
                     status=status.HTTP_400_BAD_REQUEST,
                 )
 
-            # ✅ Run HOS simulation
+            #  Run HOS simulation
             simulation = simulate_trip(
                 route["distance_miles"],
                 data["current_cycle_hours"],
@@ -46,7 +46,7 @@ class PlanTripView(APIView):
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 )
 
-            # ✅ Build response
+            # Build response
             response_payload = {
                 "route": route,
                 "stops": simulation.get("stops", []),
@@ -56,7 +56,7 @@ class PlanTripView(APIView):
                 "decisions": simulation.get("decisions", []),
             }
 
-            # ✅ Save to DB
+            #  Save to DB
             try:
                 trip_plan = TripPlan.objects.create(
                     current_location=data["current_location"],
