@@ -1,8 +1,12 @@
 import axios from "axios";
 
+const API_BASE =
+  import.meta.env.VITE_API_BASE_URL ||
+  "https://fmcsa-trip-planner.onrender.com/api";
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
-  timeout: 20000
+  baseURL: API_BASE,
+  timeout: 20000,
 });
 
 export async function planTrip(payload) {
