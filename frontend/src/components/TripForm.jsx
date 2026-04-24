@@ -2,10 +2,10 @@ import { useState } from "react";
 import { Loader2, Navigation } from "lucide-react";
 
 const initialValues = {
-  current_location: "Chicago, IL",
-  pickup_location: "St. Louis, MO",
-  dropoff_location: "Los Angeles, CA",
-  current_cycle_hours: 18
+  current_location: "",
+  pickup_location: "",
+  dropoff_location: "",
+  current_cycle_hours: 0,
 };
 
 export default function TripForm({ onSubmit, loading }) {
@@ -16,20 +16,33 @@ export default function TripForm({ onSubmit, loading }) {
     const { name, value } = event.target;
     setValues((current) => ({
       ...current,
-      [name]: name === "current_cycle_hours" ? Number(value) : value
+      [name]:
+        name === "current_cycle_hours" ? Number(value) : value,
     }));
   }
 
   function submit(event) {
     event.preventDefault();
-    if (!values.current_location.trim() || !values.pickup_location.trim() || !values.dropoff_location.trim()) {
+
+    if (
+      !values.current_location.trim() ||
+      !values.pickup_location.trim() ||
+      !values.dropoff_location.trim()
+    ) {
       setFormError("All locations are required.");
       return;
     }
-    if (values.current_cycle_hours < 0 || values.current_cycle_hours > 70) {
-      setFormError("Current cycle used must be between 0 and 70 hours.");
+
+    if (
+      values.current_cycle_hours < 0 ||
+      values.current_cycle_hours > 70
+    ) {
+      setFormError(
+        "Current cycle used must be between 0 and 70 hours."
+      );
       return;
     }
+
     setFormError("");
     onSubmit(values);
   }
@@ -41,39 +54,67 @@ export default function TripForm({ onSubmit, loading }) {
         <h2>Build a compliant route</h2>
       </div>
 
+      {/* Current Location */}
       <label>
         Current location
-        <input required name="current_location" value={values.current_location} onChange={updateField} />
-      </label>
-
-      <label>
-        Pickup location
-        <input required name="pickup_location" value={values.pickup_location} onChange={updateField} />
-      </label>
-
-      <label>
-        Dropoff location
-        <input required name="dropoff_location" value={values.dropoff_location} onChange={updateField} />
-      </label>
-
-      <label>
-        Current cycle used
         <input
-          min="0"
-          max="70"
-          name="current_cycle_hours"
-          required
-          type="number"
-          value={values.current_cycle_hours}
+          name="current_location"
+          value={values.current_location}
           onChange={updateField}
+          placeholder="Enter current location"
+          required
         />
       </label>
 
+      {/* Pickup Location */}
+      <label>
+        Pickup location
+        <input
+          name="pickup_location"
+          value={values.pickup_location}
+          onChange={updateField}
+          placeholder="Enter pickup location"
+          required
+        />
+      </label>
+
+      {/* Dropoff Location */}
+      <label>
+        Dropoff location
+        <input
+          name="dropoff_location"
+          value={values.dropoff_location}
+          onChange={updateField}
+          placeholder="Enter dropoff location"
+          required
+        />
+      </label>
+
+      {/* Cycle Hours */}
+      <label>
+        Current cycle used
+        <input
+          name="current_cycle_hours"
+          type="number"
+          min="0"
+          max="70"
+          value={values.current_cycle_hours}
+          onChange={updateField}
+          required
+        />
+      </label>
+
+      {/* Error Message */}
       {formError && <p className="form-error">{formError}</p>}
 
+      {/* Submit Button */}
       <button type="submit" disabled={loading}>
-        {loading ? <Loader2 className="spin" size={18} /> : <Navigation size={18} />}
-        {loading ? "Planning" : "Plan trip"}
+        {loading ? (
+          <Loader2 className="spin" size={18} />
+        ) : (
+          <Navigation size={18} />
+        )}
+        {loading ? "Planning..." : "Plan trip"}
       </button>
     </form>
   );
