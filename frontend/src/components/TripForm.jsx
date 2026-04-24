@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Loader2, Navigation } from "lucide-react";
 
 const initialValues = {
-  current_location: " ",
-  pickup_location: " ",
-  dropoff_location: "",
+  current_location:"",
+  pickup_location:"",
+  dropoff_location:"",
   current_cycle_hours:0
 };
 
