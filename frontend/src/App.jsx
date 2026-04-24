@@ -18,9 +18,7 @@ export default function App() {
   const [hoveredStopKey, setHoveredStopKey] = useState("");
   const [activeStopKey, setActiveStopKey] = useState("");
 
-  useEffect(() => {
-    refreshHistory();
-  }, []);
+
 
   async function refreshHistory() {
     try {
